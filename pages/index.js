@@ -1,8 +1,12 @@
 import Head from 'next/head'
-import { auth, signOut } from '../firebase'
+import { auth } from '../firebase'
+import { signOut } from "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth';
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
+
+  const [user] = useAuthState(auth)
 
   const logOff = () => {
     signOut(auth).then(() => {
@@ -20,7 +24,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Logged in content</h1>
+      <h1>Welcome {user.displayName}</h1>
 
       <button onClick={logOff}>Sign out</button>
 

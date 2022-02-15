@@ -1,9 +1,10 @@
 import Head from "next/head"
-import { auth, provider, signInWithPopup } from '../firebase'
+import { auth, provider } from '../firebase'
+import { signInWithPopup } from "firebase/auth";
 
 function login() {
 
-    const popup = () => {
+    const handleLogin = () => {
         signInWithPopup(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
@@ -32,7 +33,7 @@ function login() {
             </Head>
 
             <h1>Login</h1>
-            <button onClick={popup}>Log in</button>
+            <button onClick={handleLogin}>Log in</button>
         </>
 
     )
